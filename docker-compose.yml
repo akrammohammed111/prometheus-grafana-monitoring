@@ -30,6 +30,7 @@ services:
     volumes:
       - ./grafana:/etc/grafana/provisioning/datasources
       #- ./grafana/provisioning:/etc/grafana/provisioning
+      - ./grafana/grafana.ini:/etc/grafana/grafana.ini
     healthcheck:
       test: ["CMD", "wget", "--spider", "-q", "http://localhost:3000/"]
       interval: 30s
