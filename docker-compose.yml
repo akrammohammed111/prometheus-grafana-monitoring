@@ -38,6 +38,21 @@ services:
       retries: 3
     networks:
       - monitoring
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor
+    container_name: cadvisor_docker_monitoring
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    volumes:
+      - ./:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    devices:
+      - /dev/kmsg
+    privileged: true
 
 volumes:
   prom_data:
