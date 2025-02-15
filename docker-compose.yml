@@ -44,15 +44,23 @@ services:
     ports:
       - "8080:8080"
     restart: unless-stopped
+    privileged: true
     volumes:
       - ./:/rootfs:ro
       - /var/run:/var/run:ro
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
       - /dev/disk/:/dev/disk:ro
+      - /etc/machine-id:/etc/machine-id:ro
     devices:
       - /dev/kmsg
-    privileged: true
+
+  pushgateway:
+    image: prom/pushgateway
+    container_name: local_push_gateway
+    ports:
+      - "9091:9091"
+    restart: unless-stopped
 
 volumes:
   prom_data:
