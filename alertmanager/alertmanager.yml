@@ -1,0 +1,9 @@
+global:
+  resolve_timeout: 5m
+route:
+  receiver: webhook_receiver
+receivers:
+    - name: webhook_receiver
+      webhook_configs:
+        - url:  'https://webhook.site/8ae58556-6c3d-4424-8854-5610924dc222' # Get temp webhook URL from https://webhook.site/#!/view/8ae58556-6c3d-4424-8854-5610924dc222/79b28e79-b60b-4db2-a90c-fa7dafbfa670/1
+          send_resolved: false
